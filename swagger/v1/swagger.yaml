@@ -1,0 +1,163 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/properties":
+    post:
+      summary: create property
+      tags:
+      - Properties
+      parameters: []
+      responses:
+        '201':
+          description: property created
+        '422':
+          description: invalid request
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                property_type:
+                  type: string
+                bedrooms:
+                  type: integer
+                sitting_rooms:
+                  type: integer
+                kitchens:
+                  type: integer
+                bathrooms:
+                  type: integer
+                toilets:
+                  type: integer
+                owner:
+                  type: string
+                description:
+                  type: string
+                valid_from:
+                  type: string
+                valid_to:
+                  type: string
+              required:
+              - address
+              - property_type
+              - bedrooms
+              - sitting_rooms
+              - kitchens
+              - bathrooms
+              - toilets
+              - owner
+              - description
+              - valid_from
+              - valid_to
+          application/xml:
+            schema:
+              type: object
+              properties:
+                address:
+                  type: string
+                property_type:
+                  type: string
+                bedrooms:
+                  type: integer
+                sitting_rooms:
+                  type: integer
+                kitchens:
+                  type: integer
+                bathrooms:
+                  type: integer
+                toilets:
+                  type: integer
+                owner:
+                  type: string
+                description:
+                  type: string
+                valid_from:
+                  type: string
+                valid_to:
+                  type: string
+              required:
+              - address
+              - property_type
+              - bedrooms
+              - sitting_rooms
+              - kitchens
+              - bathrooms
+              - toilets
+              - owner
+              - description
+              - valid_from
+              - valid_to
+    get:
+      summary: list properties
+      responses:
+        '200':
+          description: successful
+  "/api/v1/properties/{id}":
+    get:
+      summary: show property
+      tags:
+      - Properties
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+        '404':
+          description: property not found
+    parameters:
+    - name: id
+      in: path
+      description: id
+      required: true
+      schema:
+        type: string
+    patch:
+      summary: update property
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update property
+      responses:
+        '200':
+          description: successful
+    delete:
+      summary: delete property
+      responses:
+        '200':
+          description: successful
+  "/api/v1/properties/search_by_owner":
+    get:
+      summary: search_by_owner property
+      responses:
+        '200':
+          description: successful
+  "/api/v1/properties/search_by_filters":
+    get:
+      summary: search_by_filters property
+      responses:
+        '200':
+          description: successful
+  "/api/v1/properties/search_by_address":
+    get:
+      summary: search_by_address property
+      responses:
+        '200':
+          description: successful
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
