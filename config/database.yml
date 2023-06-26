@@ -83,6 +83,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: property-api_production
   username: property-api
   password: <%= ENV["property-api_DATABASE_PASSWORD"] %>
