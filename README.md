@@ -105,8 +105,3 @@ This API provides a Swagger documentation interface for easy testing and explora
 
 This project is licensed under the MIT License.
 ```
-
-You can copy the entire block above and paste it into your README file.# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
