@@ -1,5 +1,5 @@
 # Make sure it matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.0
+ARG RUBY_VERSION=3.2.2
 FROM ruby:$RUBY_VERSION
 
 # Install libvips for Active Storage preview support
@@ -31,7 +31,7 @@ RUN bundle exec bootsnap precompile --gemfile app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
 
 # Entrypoint prepares the database.
-ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+ENTRYPOINT ["/property-api/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
