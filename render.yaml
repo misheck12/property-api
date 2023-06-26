@@ -1,4 +1,8 @@
 databases:
     -name: postgres
     ipAllowList: []
-    
+
+services:
+    -typpe: Web
+    name: property-api
+    env: ruby
