@@ -2,23 +2,23 @@ version: '3'
 services:
   db:
     image: postgres:15
+    restart: always
     environment:
-      POSTGRES_USER: property_api_user
-      POSTGRES_PASSWORD: KAhQcgVkQbXa6BZOue70WHLp6W676gxy
+      POSTGRES_USER: property_apiuser
+      POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: property_api
-    volumes:
-      - pgdata:/var/lib/postgresql/data
 
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: always
     depends_on:
       - db
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: postgres://property_api_user:KAhQcgVkQbXa6BZOue70WHLp6W676gxy@db/property_api
+      DATABASE_URL: https://dashboard.render.com/d/dpg-cicm612ip7vnjjkrb9qg-a
 
 volumes:
   pgdata:
