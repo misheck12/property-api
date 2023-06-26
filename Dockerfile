@@ -1,38 +1,42 @@
-# Make sure it matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.2
-FROM ruby:$RUBY_VERSION
+# Base image for Ruby on Rails
+FROM ruby:3.2.2
 
-# Install libvips for Active Storage preview support
-RUN apt-get update -qq && \
-    apt-get install -y build-essential libvips bash bash-completion libffi-dev tzdata postgresql nodejs npm yarn && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /usr/share/doc /usr/share/man
+# Set the working directory in the container
+WORKDIR /app
 
-# Rails app lives here
-WORKDIR /rails
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        nodejs \
+        postgresql-client && \
+    rm -rf /var/lib/apt/lists/*
 
-# Set production environment
-ENV RAILS_LOG_TO_STDOUT="1" \
-    RAILS_SERVE_STATIC_FILES="true" \
-    RAILS_ENV="production" \
-    BUNDLE_WITHOUT="development"
+# Install Geocoder dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        libgeos-dev && \
+    rm -rf /var/lib/apt/lists/*
 
-# Install application gems
+# Copy Gemfile and Gemfile.lock to the container
 COPY Gemfile Gemfile.lock ./
-RUN bundle install
 
-# Copy application code
+# Install project dependencies
+RUN bundle install --jobs 4 --retry 3
+
+# Copy the entire project directory to the container
 COPY . .
 
-# Precompile bootsnap code for faster boot times
-RUN bundle exec bootsnap precompile --gemfile app/ lib/
+# Set environment variables for PostgreSQL
+ENV POSTGRES_USER=misheck
+ENV POSTGRES_PASSWORD=123456
+ENV POSTGRES_DB=mydb
 
-# Precompiling assets for production without requiring secret RAILS_MASTER_KEY
-RUN SECRET_KEY_BASE_DUMMY=1 bundle exec rails assets:precompile
+# Precompile assets
+RUN bundle exec rails assets:precompile
 
-# Entrypoint prepares the database.
-ENTRYPOINT ["/property-api/bin/docker-entrypoint"]
-
-# Start the server by default, this can be overwritten at runtime
+# Expose port 3000 for the Rails server
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+
+# Start the Rails server
+CMD ["rails", "server", "-b", "0.0.0.0"]
