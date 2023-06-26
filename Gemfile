@@ -5,9 +5,6 @@ ruby "3.2.2"
 gem 'geocoder'
 gem 'rswag'
 gem 'bundler', '2.4.14'
-
-
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.5"
 
@@ -54,4 +51,3 @@ group :development do
 
 
 end
-
