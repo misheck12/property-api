@@ -6,3 +6,5 @@ services:
     -typpe: Web
     name: property-api
     env: ruby
+    build command: "./bin/render.sh"
+    start command: bundle exec rails s
