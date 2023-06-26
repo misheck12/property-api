@@ -9,7 +9,7 @@ bundle install
 bundle exec rake assets:precompile
 
 # Clean assets
-bundle exec rake assets:clean
+bundle exec rake assets:clobber
 
 # Run database migrations
 bundle exec rake db:migrate
