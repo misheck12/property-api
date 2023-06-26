@@ -4,9 +4,9 @@ services:
     image: postgres:15
     restart: always
     environment:
-      POSTGRES_USER: myuser
-      POSTGRES_PASSWORD: mypassword
-      POSTGRES_DB: mydb
+      POSTGRES_USER: property_api_user
+      POSTGRES_PASSWORD: KAhQcgVkQbXa6BZOue70WHLp6W676gxy
+      POSTGRES_DB: property_api
 
   app:
     build:
@@ -18,7 +18,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      DATABASE_URL: https://dashboard.render.com/d/dpg-cicm612ip7vnjjkrb9qg-a
+      DATABASE_URL: postgres://property_api_user:KAhQcgVkQbXa6BZOue70WHLp6W676gxy@dpg-cicm612ip7vnjjkrb9qg-a.oregon-postgres.render.com/property_api
 
 volumes:
   pgdata:
