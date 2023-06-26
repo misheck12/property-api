@@ -1,6 +1,3 @@
-Certainly! Here's the README with the steps for cloning the API in a format that can be easily copied:
-
-```
 # Property API
 
 This is a Ruby on Rails API for managing properties.
@@ -14,15 +11,15 @@ This API requires Ruby version 3.2.2. Make sure you have it installed before pro
 Ensure that the following dependencies are installed on your system:
 
 - Ruby 3.2.2
-- Rails X.X.X
-- PostgreSQL X.X.X
+- Rails 7
+- PostgreSQL 15
 
 ## Configuration
 
 1. Clone this repository to your local machine:
 
    ```shell
-   git clone https://github.com/your-username/property-api.git
+   git clone https://github.com/misheck12/property-api.git
    ```
 
 2. Navigate to the project directory:
@@ -44,7 +41,8 @@ Ensure that the following dependencies are installed on your system:
 To create and set up the initial database schema and seed data, run the following commands:
 
 ```shell
-rails db:setup
+rails db:create
+rails db:migrate
 ```
 
 ## How to run the test suite
@@ -112,23 +110,3 @@ You can copy the entire block above and paste it into your README file.# README
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
