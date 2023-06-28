@@ -168,12 +168,38 @@ paths:
   get:
     summary: search_by_address property
     parameters:
-      - name: address
-        in: query
-        description: Property address
-        required: true
-        schema:
-          type: string
+    - name: address
+      in: query
+      description: Property address
+      required: true
+      schema:
+        type: string
+    responses:
+      '200':
+        description: successful
+"/api/v1/properties/search_by_valid_from":
+  get:
+    summary: search_by_valid_from property
+    parameters:
+    - name: valid_from
+      in: query
+      description: Property valid_from
+      required: true
+      schema:
+        type: string
+    responses:
+      '200':
+        description: successful
+"/api/v1/properties/search_by_valid_to":
+  get:
+    summary: search_by_valid_to property
+    parameters:
+    - name: valid_to
+      in: query
+      description: Property valid_to
+      required: true
+      schema:
+        type: string
     responses:
       '200':
         description: successful
