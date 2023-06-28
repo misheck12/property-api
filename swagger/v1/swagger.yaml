@@ -141,44 +141,21 @@ paths:
   "/api/v1/properties/search_by_owner":
     get:
       summary: search_by_owner property
-      parameters:
-      - name: owner
-        in: query
-        description: Property owner
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: successful
   "/api/v1/properties/search_by_filters":
     get:
       summary: search_by_filters property
-      parameters:
-      - name: property_type
-        in: query
-        description: Property type
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: successful
-
-    "api/v1/properties/search_by_address":
+  "/api/v1/properties/search_by_address":
     get:
       summary: search_by_address property
-      parameters:
-      - name: address
-        in: query
-        description: Property address
-        required: true
-        schema:
-          type: string
       responses:
         '200':
           description: successful
-
 servers:
 - url: https://{defaultHost}
   variables:
