@@ -40,6 +40,23 @@ class Api::V1::PropertiesController < ApplicationController
       property.destroy
       head :no_content
     end
+
+    def search_by_owner
+      owner = params[:owner]
+      properties = Property.where(owner: params[:owner])
+      render json: properties
+    end
+
+    def search_by_filters
+      properties = Property.where(bedrooms: params[:bedrooms], bathrooms: params[:bathrooms])
+      render json: properties
+    end
+
+    def search_by_address
+      address = params[:address]
+      properties = Property.where(address: params[:address])
+      render json: properties
+    end
   
     private
   
