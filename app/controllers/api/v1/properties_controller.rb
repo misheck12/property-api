@@ -48,8 +48,7 @@ class Api::V1::PropertiesController < ApplicationController
     end
 
     def search_by_filters
-      properties = Property.where(bedrooms: params[:bedrooms], bathrooms: params[:bathrooms])
-      render json: properties
+      
     end
 
     def search_by_address
