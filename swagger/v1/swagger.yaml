@@ -1,4 +1,3 @@
----
 openapi: 3.0.1
 info:
   title: API V1
@@ -8,7 +7,7 @@ paths:
     post:
       summary: create property
       tags:
-      - Properties
+        - Properties
       parameters: []
       responses:
         '201':
@@ -46,17 +45,17 @@ paths:
                 valid_to:
                   type: string
               required:
-              - address
-              - property_type
-              - bedrooms
-              - sitting_rooms
-              - kitchens
-              - bathrooms
-              - toilets
-              - owner
-              - description
-              - valid_from
-              - valid_to
+                - address
+                - property_type
+                - bedrooms
+                - sitting_rooms
+                - kitchens
+                - bathrooms
+                - toilets
+                - owner
+                - description
+                - valid_from
+                - valid_to
           application/xml:
             schema:
               type: object
@@ -84,17 +83,17 @@ paths:
                 valid_to:
                   type: string
               required:
-              - address
-              - property_type
-              - bedrooms
-              - sitting_rooms
-              - kitchens
-              - bathrooms
-              - toilets
-              - owner
-              - description
-              - valid_from
-              - valid_to
+                - address
+                - property_type
+                - bedrooms
+                - sitting_rooms
+                - kitchens
+                - bathrooms
+                - toilets
+                - owner
+                - description
+                - valid_from
+                - valid_to
     get:
       summary: list properties
       responses:
@@ -104,25 +103,18 @@ paths:
     get:
       summary: show property
       tags:
-      - Properties
+        - Properties
       parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: string
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: successful
         '404':
           description: property not found
-    parameters:
-    - name: id
-      in: path
-      description: id
-      required: true
-      schema:
-        type: string
     patch:
       summary: update property
       responses:
@@ -142,33 +134,104 @@ paths:
     get:
       summary: search_by_owner property
       parameters:
-      - name: owner
-        in: query
-        description: Property owner
-        required: true
-        schema:
-          type: string
+        - name: owner
+          in: query
+          description: Property owner
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: successful
   "/api/v1/properties/search_by_filters":
-    
-
-    "api/v1/properties/search_by_address":
     get:
-      summary: search_by_address property
+      summary: search_by_filters property
       parameters:
-      - name: address
-        in: query
-        description: Property address
-        required: true
-        schema:
-          type: string
+        - name: address
+          in: query
+          description: Property address
+          required: true
+          schema:
+            type: string
+        - name: property_type
+          in: query
+          description: Property type
+          required: true
+          schema:
+            type: string
+        - name: bedrooms
+          in: query
+          description: Property bedrooms
+          required: true
+          schema:
+            type: integer
+        - name: sitting_rooms
+          in: query
+          description: Property sitting rooms
+          required: true
+          schema:
+            type: integer
+        - name: kitchens
+          in: query
+          description: Property kitchens
+          required: true
+          schema:
+            type: integer
+        - name: bathrooms
+          in: query
+          description: Property bathrooms
+          required: true
+          schema:
+            type: integer
+        - name: toilets
+          in: query
+          description: Property toilets
+          required: true
+          schema:
+            type: integer
+        - name: owner
+          in: query
+          description: Property owner
+          required: true
+          schema:
+            type: string
+        - name: description
+          in: query
+          description: Property description
+          required: true
+          schema:
+            type: string
+        - name: valid_from
+          in: query
+          description: Property valid from
+          required: true
+          schema:
+            type: string
+        - name: valid_to
+          in: query
+          description: Property valid to
+          required: true
+          schema:
+            type: string
       responses:
         '200':
           description: successful
+  "/api/v1/properties/search_by_address":
+    get:
+      summary: search_by_address property
+      parameters:
+        - name: address
+          in: query
+          description: Property address
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful
+
 servers:
-- url: https://{defaultHost}
-  variables:
-    defaultHost:
-      default: property-api.onrender.com
+  - url: https://{defaultHost}
+    variables:
+      defaultHost:
+        default: property-api.onrender.com
