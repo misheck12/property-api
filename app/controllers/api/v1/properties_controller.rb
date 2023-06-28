@@ -40,6 +40,36 @@ class Api::V1::PropertiesController < ApplicationController
       property.destroy
       head :no_content
     end
+
+    def search_by_owner
+      owner = params[:owner]
+      properties = Property.where(owner: params[:owner])
+      render json: properties
+    end
+
+    def search_by_filters
+      address = params[:address]
+      property_type = params[:property_type]
+      bedrooms = params[:bedrooms]
+      sitting_rooms = params[:sitting_rooms]
+      kitchens = params[:kitchens]
+      bathrooms = params[:bathrooms]
+      toilets = params[:toilets]
+      owner = params[:owner]
+      description = params[:description]
+      valid_from = params[:valid_from]
+      valid_to = params[:valid_to]
+    
+      properties = Property.where(address: address, property_type: property_type, bedrooms: bedrooms, sitting_rooms: sitting_rooms, kitchens: kitchens, bathrooms: bathrooms, toilets: toilets, owner: owner, description: description, valid_from: valid_from, valid_to: valid_to)
+    
+      render json: properties, status: :ok
+    end
+
+    def search_by_address
+      address = params[:address]
+      properties = Property.where(address: params[:address])
+      render json: properties
+    end
   
     private
   
@@ -57,4 +87,6 @@ class Api::V1::PropertiesController < ApplicationController
       params.require(:property).permit(:address, :property_type, :bedrooms, :sitting_rooms, :kitchens, :bathrooms, :toilets, :owner, :description, :valid_from, :valid_to)
     end
   end
+
+  
   
