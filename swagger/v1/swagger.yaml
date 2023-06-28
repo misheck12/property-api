@@ -160,4 +160,4 @@ servers:
 - url: https://{defaultHost}
   variables:
     defaultHost:
-      default: https://property-api.onrender.com
+      default: property-api.onrender.com
